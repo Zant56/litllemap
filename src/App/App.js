@@ -10,19 +10,21 @@ function App() {
   return (
     
     <div className="App">
-      <SearchBar/>
+
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App/App.js</code> and save to reload.
-        </p>
-       
+        <SearchBar/>
       </header>
-      <footer>
-        <ButtonProfile/>
-        <ButtonProjects/>
-        <ButtonAdd/>
+
+      <section className="App-body">
+        <img src={logo} className="App-logo" alt="logo" />
+      </section>
+
+      <footer className="App-footer">
+          <ButtonProfile/>
+          <ButtonProjects/>
+          <ButtonAdd/>
       </footer>
+
     </div>
   );
 }

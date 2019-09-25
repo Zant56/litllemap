@@ -1,11 +1,22 @@
 import React from 'react';
 import './SearchBar.css';
+import {Navbar,NavItem} from 'react-materialize';
 
 function SearchBar() {
   return (
-    <div className="topnav">
-      <input type="text" placeholder="Search.."></input>
-    </div>
+    <Navbar 
+      className="SearchBar"
+      brand={
+        <a />   
+      } 
+      alignLinks="right" 
+      search
+     >
+       <NavItem href="components.html">
+         Item1
+       </NavItem>
+    </Navbar>
+    
   );
 }
 

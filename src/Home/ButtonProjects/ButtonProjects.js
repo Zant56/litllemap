@@ -1,10 +1,15 @@
 import React from 'react';
 import './ButtonProjects.css';
+import {Button, Icon} from 'react-materialize';
 
 function ButtonProjects() {
   return (
-    <div className="topnav">
-      <button type="button">NB Projets</button>
+    <div className="button3">
+     
+          <Icon >
+            filter_1
+          </Icon> 
+    
     </div>
   );
 }

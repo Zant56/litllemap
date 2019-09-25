@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -7,16 +8,25 @@
 }
 
 .App-header {
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  min-height: 10vh;
 }
 
-.App-link {
-  color: #09d3ac;
+.App-body {
+  min-height: 70vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.App-footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 20vh;
 }
 
