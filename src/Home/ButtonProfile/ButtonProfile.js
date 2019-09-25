@@ -5,7 +5,7 @@ import {Button,Icon} from 'react-materialize';
 function ButtonProfile() {
   return (
     <div className="button1">
-        
+
           <Icon>
             account_circle
           </Icon> 
