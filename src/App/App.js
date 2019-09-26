@@ -16,7 +16,7 @@ function App() {
       </header>
 
       <section className="App-body">
-        <MainMap onClick={this.handleClick}/>
+        <MainMap/>
       </section>
 
       <section className="App-buttons">
