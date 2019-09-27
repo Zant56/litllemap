@@ -18,16 +18,15 @@ class MainMap extends Component {
       currentPos: null,
       marqueur: [[51.3,-1.01]]
     };
-//    this.handleClick = this.handleClick.bind(this);
+     this.handleClick = this.handleClick.bind(this);
   }
 
-
-  /*handleClick(e){
+  handleClick(e){
     this.setState({ currentPos: e.latlng });
     this.state.marqueur.push(e.latlng)
     this.setState(this.state.marqueur)
     console.log(this.state.marqueur)
-  }*/
+  }
   
   addMarker = (e) => {
     const {marqueur} = this.state
