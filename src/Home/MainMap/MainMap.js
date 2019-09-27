@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import {Map, TileLayer, Popup, Marker, withLeaflet} from "react-leaflet";
-
+import React, {Component}  from "react";
+import {Map, TileLayer, Popup, Marker} from "react-leaflet";
 
 const MyMarker = props => {
 
@@ -9,58 +8,42 @@ const MyMarker = props => {
       ref.leafletElement.openPopup()
     }
   }
-
   return <Marker ref={initMarker} {...props}/>
 }
-
-/*
-{this.state.marqueur.map(() =>
-  <Marker key={`marqueur-${idx}`} marqueur={this.state.marqueur}>
-  <Popup>
-    <span>Popup</span>
-  </Popup>
-</Marker>
-)}
-*/
-
-
 
 class MainMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentPos: null,
-      marqueur: [0,0]
+      marqueur: [[51.3,-1.01]]
     };
-    this.handleClick = this.handleClick.bind(this);
+//    this.handleClick = this.handleClick.bind(this);
   }
 
 
-  handleClick(e){
+  /*handleClick(e){
     this.setState({ currentPos: e.latlng });
     this.state.marqueur.push(e.latlng)
     this.setState(this.state.marqueur)
     console.log(this.state.marqueur)
+  }*/
+  
+  addMarker = (e) => {
+    const {marqueur} = this.state
+    console.log({marqueur})
+    marqueur.push(e.latlng)
+    this.setState({marqueur})
   }
 
-
-   ShowMarqueurs(props) {
-    const listmarqueurs = this.state.marqueur.map((marker) =>
-    <Marker key={marker.toString()}>{marker}</Marker>
-    );  
-    return (
-      <Marker>{listmarqueurs}</Marker>
-    );
-   }
-  
-  
   render() {
-    const data = this.state.marqueur
-    console.log(data)
-    const listItems = data.map((d) => <Marker key={d} position={d}>{d}</Marker>)
+
     return (
       <div>
-        <Map zoom={8} center={{ lat: 51.5287718, lng: -0.2416804 }} onClick={this.handleClick}>
+        <Map 
+        zoom={8} 
+        center={{ lat: 51.5287718, lng: -0.2416804 }} 
+        onClick={this.addMarker}>
           <TileLayer
               url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
           />
@@ -69,8 +52,14 @@ class MainMap extends Component {
               Current location: <pre>{JSON.stringify(this.state.currentPos, null, 2)}</pre>
             </Popup>
           </MyMarker>}
-         <Marker position={listItems}></Marker>
-        </Map>
+          {this.state.marqueur.map((position, idx) => 
+          <Marker key={`marker-${idx}`} position={position}>
+          <Popup>
+            <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
+          </Popup>
+        </Marker>
+        )}
+         </Map>
       </div>
     )
   }

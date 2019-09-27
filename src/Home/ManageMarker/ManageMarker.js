@@ -2,20 +2,28 @@ import React from 'react';
 import './ButtonProjects.css';
 import Marker from 'react-leaflet';
 
-function NumberList(props) {
-  const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
-    <Marker key={number.toString()}>
-      {number}
-    </Marker>
+function ShowMarqueurs(props) {
+  const marqueurs = this.state.marqueur;
+  const listmarqueurs = marqueurs.map((marker) =>
+  <Marker>{marker}</Marker>
+  );  
+  return (
+    <Marker>{listmarqueurs}</Marker>
+  );
+ }
+
+function ShowMarqueurs(props) {
+  const marqueurs = props.marqueurs;
+  const listmarqueurs = marqueurs.map((marker) =>
+    <Marker> {marker} </Marker>
   );
   return (
-    <ul>{listItems}</ul>
+    <Marker>{listmarqueurs}</Marker>
   );
 }
 
-const numbers = [1, 2, 3, 4, 5,6];
+const marqueurs = props.marqueurs;
 ReactDOM.render(
-  <NumberList numbers={numbers} />,
+  <ShowMarqueurs marqueurs={marqueurs} />,
   document.getElementById('root')
 );
