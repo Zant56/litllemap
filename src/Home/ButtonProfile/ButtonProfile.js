@@ -1,6 +1,6 @@
 import React from 'react';
 import './ButtonProfile.css';
-import {Button,Icon} from 'react-materialize';
+import {Icon} from 'react-materialize';
 
 function ButtonProfile() {
   return (

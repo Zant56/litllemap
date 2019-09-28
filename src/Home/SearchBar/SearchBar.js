@@ -6,9 +6,6 @@ function SearchBar() {
   return (
     <Navbar 
       className="SearchBar"
-      brand={
-        <a />   
-      } 
       alignLinks="right" 
       search
      >
