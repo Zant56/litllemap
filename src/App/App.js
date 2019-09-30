@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import ButtonProfile from '../Home/ButtonProfile/ButtonProfile';
 import ButtonProjects from '../Home/ButtonProjects/ButtonProjects';
-import ButtonAdd from '../Home/ButtonAdd/ButtonAdd';
-import MainMap from '../Home/MainMap/MainMap';
+import ButtonAdd      from '../Home/ButtonAdd/ButtonAdd';
+import MainMap        from '../Home/MainMap/MainMap';
 
 class App extends React.Component {
   constructor(props) {
