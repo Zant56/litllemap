@@ -15,7 +15,6 @@ class ButtonAdd extends React.Component {
     }));
     evt.preventDefault();
     this.props.handleFromParent(this.state.isToggleOn);
-    console.log(this.props.handleFromParent(this.state.isToggleOn))
   }
 
   render(){
@@ -26,15 +25,17 @@ class ButtonAdd extends React.Component {
           large 
           waves="light" 
           onClick={this.handleClick}
-          icon={
+        >
+          {this.state.isToggleOn ? (
             <Icon>
               add
-            </Icon> 
+            </Icon>
+            ) : 
+            <Icon>
+              cancel
+            </Icon>
             }
-        >
-          {this.state.isToggleOn ? 'On' : 'Off' }
-        </Button>
-
+          </Button>
       </div>
     );
   }

@@ -8,17 +8,28 @@ import MainMap        from '../Home/MainMap/MainMap';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.handleData = this.handleData.bind(this);    
+    this.handleData = this.handleData.bind(this);
+    this.handleCounter = this.handleCounter.bind(this);     
     this.state = {           
-    isToggleOn: false
+    isToggleOn: false,
+    counter: 0
     }
+  }
+  
+  componentDidMount(datacounter) {
+    this.handleCounter(this.counter);
+  }
+
+  handleCounter(datacounter) {
+    this.setState({
+      counter: datacounter
+    });
   }
 
   handleData(data) {
     this.setState({
       isToggleOn: data
     });
-    console.log(this.isToggleOn)
   }
 
   render() {
@@ -31,12 +42,16 @@ class App extends React.Component {
         <section className="App-body">
           <MainMap 
             isToggleOn = {this.state.isToggleOn}
+            handleCounterFromMap = {this.handleCounter}
           />
         </section>
   
         <section className="App-buttons">
           <ButtonProfile/>
-          <ButtonProjects/>
+          <ButtonProjects
+            counter = {this.state.counter}
+          />
+
           <ButtonAdd 
             handleFromParent={this.handleData}
           >

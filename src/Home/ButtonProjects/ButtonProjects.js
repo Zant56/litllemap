@@ -2,16 +2,22 @@ import React from 'react';
 import './ButtonProjects.css';
 import { Icon} from 'react-materialize';
 
-function ButtonProjects() {
+class ButtonProjects extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+  }
+
+  render() {
   return (
     <div className="button3">
-     
           <Icon >
-            filter_1
+            {
+              'filter_' + this.props.counter
+            }
           </Icon> 
-    
     </div>
   );
-}
+}}
 
 export default ButtonProjects;

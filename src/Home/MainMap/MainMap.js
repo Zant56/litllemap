@@ -17,9 +17,14 @@ class MainMap extends Component {
     super(props);
     this.state = {
       currentPos: null,
-      marqueur: [[51.3,-1.01]]
+      marqueur: [[51.3,-1.01]],
+      counter: 0
     };
      this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.markerCounter();
   }
 
   handleClick(e){
@@ -37,8 +42,21 @@ class MainMap extends Component {
       marqueur.push(e.latlng);
       this.setState({marqueur});
     }
-    
+    this.markerCounter();
     console.log(this.props.isToggleOn)
+  }
+
+  markerCounter = () => {
+    this.setState({counter: 0});
+    console.log('on move end');
+    const mapBounds = this.refs.L.leafletElement.getBounds();
+    this.state.marqueur.forEach(element => {
+      if (mapBounds.contains(element)) {
+         this.setState({counter: this.state.counter+1});
+         console.log(this.state.counter);
+         this.props.handleCounterFromMap(this.state.counter);
+      }  
+    })
   }
 
   render() {
@@ -47,7 +65,10 @@ class MainMap extends Component {
         <Map 
         zoom={8} 
         center={{ lat: 51.5287718, lng: -0.2416804 }} 
-        onClick={this.addMarker}>
+        onClick={this.addMarker}
+        onMoveend={this.markerCounter}
+        ref='L'
+        >
           <TileLayer
               url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
           />
