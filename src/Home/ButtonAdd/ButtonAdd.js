@@ -9,14 +9,13 @@ class ButtonAdd extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick(evt) {
     this.setState(state=> ({
       isToggleOn: !state.isToggleOn 
     }));
-  }
-
-  senData() {
-    this.props.parentCallback(this.isToggleOn)
+    evt.preventDefault();
+    this.props.handleFromParent(this.state.isToggleOn);
+    console.log(this.props.handleFromParent(this.state.isToggleOn))
   }
 
   render(){
@@ -34,8 +33,6 @@ class ButtonAdd extends React.Component {
             }
         >
           {this.state.isToggleOn ? 'On' : 'Off' }
-          {this.senData}
-        {console.log(this.state)}
         </Button>
 
       </div>

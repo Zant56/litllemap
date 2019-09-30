@@ -1,20 +1,22 @@
-import React from 'react';
 import './SearchBar.css';
-import {Navbar,NavItem} from 'react-materialize';
+import {MapControl,withLeaflet} from 'react-leaflet';
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 
-function SearchBar() {
-  return (
-    <Navbar 
-      className="SearchBar"
-      alignLinks="right" 
-      search
-     >
-       <NavItem href="components.html">
-         Item1
-       </NavItem>
-    </Navbar>
-    
-  );
+class GeoSearch extends MapControl {
+ 
+ createLeafletElement(opts) {
+    const provider = new OpenStreetMapProvider();
+    const searchControl = new GeoSearchControl({
+      provider: provider,
+      style:'bar'
+    });
+    return searchControl;
+  }
+
+  componentDidMount() {
+    const { map } = this.props.leaflet;
+    map.addControl(this.leafletElement);
+  }
 }
 
-export default SearchBar;
+export default withLeaflet(GeoSearch);

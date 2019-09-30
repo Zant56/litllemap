@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import SearchBar from '../Home/SearchBar/SearchBar';
 import ButtonProfile from '../Home/ButtonProfile/ButtonProfile';
 import ButtonProjects from '../Home/ButtonProjects/ButtonProjects';
 import ButtonAdd from '../Home/ButtonAdd/ButtonAdd';
@@ -8,14 +7,18 @@ import MainMap from '../Home/MainMap/MainMap';
 
 class App extends React.Component {
   constructor(props) {
-    super(props)    
+    super(props);
+    this.handleData = this.handleData.bind(this);    
     this.state = {           
     isToggleOn: false
     }
   }
 
-  callBackFunction(childData) {
-    this.setState({isToggleOn: childData})
+  handleData(data) {
+    this.setState({
+      isToggleOn: data
+    });
+    console.log(this.isToggleOn)
   }
 
   render() {
@@ -23,19 +26,23 @@ class App extends React.Component {
       <div className="App">
   
         <header className="App-header">
-          <SearchBar/>
         </header>
   
         <section className="App-body">
-          <MainMap/>
+          <MainMap 
+            isToggleOn = {this.state.isToggleOn}
+          />
         </section>
   
         <section className="App-buttons">
           <ButtonProfile/>
           <ButtonProjects/>
-          <ButtonAdd parentCallback = {this.callbackFunction}>
-            {console.log(this.state)}
-          </ButtonAdd>
+          <ButtonAdd 
+            handleFromParent={this.handleData}
+          >
+                    {console.log(this.state.isToggleOn)}
+
+            </ButtonAdd>
         </section>
   
       </div>

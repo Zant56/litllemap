@@ -1,5 +1,6 @@
 import React, {Component}  from "react";
 import {Map, TileLayer, Popup, Marker} from "react-leaflet";
+import GeoSearch from '../SearchBar/SearchBar';
 
 const MyMarker = props => {
 
@@ -29,14 +30,18 @@ class MainMap extends Component {
   }
   
   addMarker = (e) => {
-    const {marqueur} = this.state
-    console.log({marqueur})
-    marqueur.push(e.latlng)
-    this.setState({marqueur})
+    const addMarkerOn = this.props.isToggleOn;
+    if (addMarkerOn) {
+      const {marqueur} = this.state
+      console.log({marqueur});
+      marqueur.push(e.latlng);
+      this.setState({marqueur});
+    }
+    
+    console.log(this.props.isToggleOn)
   }
 
   render() {
-
     return (
       <div>
         <Map 
@@ -46,18 +51,24 @@ class MainMap extends Component {
           <TileLayer
               url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
           />
-          { this.state.currentPos && <MyMarker position={this.state.currentPos}>
-            <Popup position={this.state.currentPos}>
-              Current location: <pre>{JSON.stringify(this.state.currentPos, null, 2)}</pre>
-            </Popup>
-          </MyMarker>}
-          {this.state.marqueur.map((position, idx) => 
-          <Marker key={`marker-${idx}`} position={position}>
-          <Popup>
-            <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
-          </Popup>
-        </Marker>
-        )}
+          { this.state.currentPos && 
+            <MyMarker position={this.state.currentPos}>
+              <Popup position={this.state.currentPos}>
+                Current location: <pre>{JSON.stringify(this.state.currentPos, null, 2)}</pre>
+              </Popup>
+            </MyMarker>
+          }
+          { 
+            this.state.marqueur.map((position, idx) => 
+              <Marker 
+                key={`marker-${idx}`} 
+                position={position}>
+              <Popup>
+                <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
+              </Popup>
+            </Marker>
+          )}
+          <GeoSearch/>
          </Map>
       </div>
     )
