@@ -16,7 +16,7 @@ class App extends React.Component {
     }
   }
   
-  componentDidMount(datacounter) {
+  componentDidMount() {
     this.handleCounter(this.counter);
   }
 
